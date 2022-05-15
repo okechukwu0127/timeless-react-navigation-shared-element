@@ -31,4 +31,4 @@ I'm also practiced what I call interconnected animations or reactive animations,
 <br/><br/><br/>
 ## `Screen Demo`
 Product screen demo
-![Demo](/src/assets/timelessDemo.png)
+![Demo](/src/assets/timelessDemo.jpg)
