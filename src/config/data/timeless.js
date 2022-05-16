@@ -3,6 +3,7 @@ import TIMELESS_DATA from '../data/data.json';
 const TIMELESS_URL = 'https://api.timeless.investments/assets/';
 
 const creditsURL = assetId => `${TIMELESS_URL}${assetId}`;
+const creditsAssetURL = assetId => `${TIMELESS_URL}${assetId}/details`;
 
 export const getInvestments = async () => {
   const data = TIMELESS_DATA;
@@ -56,4 +57,11 @@ export const getAssetGallery = async assetId => {
     }))
     .sort((a, b) => a.createdAt > b.createdAt)
     .slice(0, 20);
+};
+
+export const getAssetDetails = async assetId => {
+  const data = await fetch(creditsAssetURL(assetId)).then(x => x.json());
+  const {details} = data?.data;
+
+  return details;
 };

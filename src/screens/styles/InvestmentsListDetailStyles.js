@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
   h20: {
     height: 20,
   },
+  price: {
+    fontSize:16
+  },
 
   topContainer: {
     position: 'absolute',
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     color: 'grey',
     fontSize: 18,
     marginBottom: SPACING,
-    marginTop: SPACING,
+    marginTop: SPACING-30,
   },
   inActiveTab: {color: '#3d66b1', fontWeight: '300'},
   inactivTab: {color: 'grey', fontSize: 12},
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
   buttonDColor: {color: '#3d66b1', fontWeight: '500'},
   buttonD: {
     marginTop: 20,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: '#3d66b1',
     padding: 10,
     borderRadius: 5,

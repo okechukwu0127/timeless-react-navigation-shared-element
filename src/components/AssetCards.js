@@ -21,7 +21,14 @@ const BACKDROP_HEIGHT = height * 0.65;
 
 import {width, height} from '../config/theme';
 
-const AssetCards = ({navigation, item, investments, index, scrollX}) => {
+const AssetCards = ({
+  navigation,
+  item,
+  investments,
+  index,
+  scrollX,
+  numFormater,
+}) => {
   const inputRange = [
     (index - 1) * ITEM_SIZE,
     index * ITEM_SIZE,
@@ -45,6 +52,7 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
         navigation.navigate('InvestmentsListDetails', {
           item,
           humanizeDate,
+          numFormater,
           prevImage: investments[index - 1]?.images.thumbnailFlatten,
           nextImage: investments[index + 1]?.images.thumbnailFlatten,
         });
@@ -103,7 +111,7 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
               </Text>
 
               <View>
-                <Text style={styles.price}>${item.sharePrice}</Text>
+                <Text style={styles.price}>{numFormater(item.sharePrice)}</Text>
               </View>
               {/* <Rating rating={item.rating} />
                       <Genres genres={item.genres} /> */}

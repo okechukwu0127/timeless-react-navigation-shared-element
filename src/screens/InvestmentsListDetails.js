@@ -46,7 +46,7 @@ const InvestmentsListDetails = ({navigation, route}) => {
   const [active, setActive] = React.useState(false);
 
   const [content, setContent] = React.useState('');
-  const {item, nextImage, prevImage, humanizeDate} = route.params;
+  const {item, nextImage, prevImage, humanizeDate, numFormater} = route.params;
   const prevImageRef = React.useRef();
   const nextImageRef = React.useRef();
   const imageRef = React.useRef();
@@ -64,7 +64,6 @@ const InvestmentsListDetails = ({navigation, route}) => {
     }
   }, []);
 
-  
 
   return (
     <SafeAreaView style={styles.flex1}>
@@ -128,7 +127,7 @@ const InvestmentsListDetails = ({navigation, route}) => {
             </Text>
             <View style={styles.buttonD}>
               <Text style={[styles.price, styles.buttonDColor]}>
-                ${item.sharePrice}
+                {numFormater(item.sharePrice)}
               </Text>
             </View>
           </View>
@@ -173,6 +172,7 @@ const InvestmentsListDetails = ({navigation, route}) => {
               }}
             />
           )}
+
           <Animatable.Text
             useNativeDriver
             animation={fadeInBottom}
@@ -218,6 +218,26 @@ const InvestmentsListDetails = ({navigation, route}) => {
             />
           </View>
         </TouchableOpacity>
+      </View>
+
+      <View
+        style={{
+          padding: 15,
+          width: '60%',
+          alignSelf: 'center',
+
+          opacity: 0.9,
+          backgroundColor: '#3d66b1',
+          marginHorizontal: 20,
+          borderRadius: 10,
+          position: 'absolute',
+          flex: 1,
+          bottom: 30,
+          justifyContent: 'center',
+        }}>
+        <Text style={{alignSelf: 'center', color: 'white', fontWeight: '600'}}>
+          GET STARTED NOW
+        </Text>
       </View>
     </SafeAreaView>
   );

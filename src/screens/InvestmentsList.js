@@ -54,6 +54,10 @@ export default function InvestmentsList({navigation,item}) {
     return <Loading />;
   }
 
+  const numFormater = n => {
+    return '$' + (Math.round(n * 100) / 100).toLocaleString();
+  };
+
   return (
     <View style={styles.container}>
       <Backdrop investments={investments} scrollX={backdropAnimated} />
@@ -86,6 +90,7 @@ export default function InvestmentsList({navigation,item}) {
         renderItem={({item, index}) => {
           return (
             <AssetCards
+              numFormater={numFormater}
               navigation={navigation}
               item={item}
               scrollX={scrollX}
