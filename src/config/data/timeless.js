@@ -52,7 +52,6 @@ export const getAssetGallery = async assetId => {
       title: data.title,
       content: content,
       type: data.type,
-
       createdAt: data.createdAt,
     }))
     .sort((a, b) => a.createdAt > b.createdAt)

@@ -27,11 +27,11 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
     index * ITEM_SIZE,
     (index + 1) * ITEM_SIZE,
   ];
-    
-    function humanizeDate(dateString) {
-      const options = {year: 'numeric', month: 'long', day: 'numeric'};
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+
+  function humanizeDate(dateString) {
+    const options = {year: 'numeric', month: 'long', day: 'numeric'};
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
 
   const translateY = scrollX.interpolate({
     inputRange,
@@ -41,42 +41,30 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
 
   return (
     <TouchableWithoutFeedback
-      onPress={
-        () => {
-         // console.log(item.images.thumbnailFlatten);
-          //console.log(investments[index - 1]?.images?.thumbnailFlatten);
-          //console.log(investments[index +1]?.images?.thumbnailFlatten);
-
-
-
-          navigation.navigate('InvestmentsListDetails', {
-            item,
-            humanizeDate,
-             prevImage: investments[index - 1]?.images.thumbnailFlatten,
-            nextImage: investments[index + 1]?.images.thumbnailFlatten,
-          });
-        }
-      }>
-      <View style={{width: ITEM_SIZE}}>
+      onPress={() => {
+        navigation.navigate('InvestmentsListDetails', {
+          item,
+          humanizeDate,
+          prevImage: investments[index - 1]?.images.thumbnailFlatten,
+          nextImage: investments[index + 1]?.images.thumbnailFlatten,
+        });
+      }}>
+      <View style={styles.itemWidth}>
         <Animated.View
-          style={{
-            marginHorizontal: SPACING,
-            padding: SPACING * 2,
-            alignItems: 'center',
-            transform: [{translateY}],
-            borderRadius: 34,
-          }}>
+          style={[
+            styles.itemData,
+            {
+              transform: [{translateY}],
+            },
+          ]}>
           <SharedElement
             id={`item.${item.key}.backdrop`}
             style={[StyleSheet.absoluteFillObject]}>
             <Animated.View
               style={[
                 StyleSheet.absoluteFillObject,
+                styles.itemBackdrop,
                 {
-                  backgroundColor: 'white',
-                  //backgroundColor: item.color,
-                  borderRadius: 34,
-                  borderBottomWidth: 5,
                   borderBottomColor: item.color,
                 },
               ]}
@@ -85,20 +73,16 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
 
           <SharedElement id={`item.${item.key}.category`}>
             <View style={[styles.genre]}>
-              <Text style={[styles.genreText, {paddingRight: 18}]}>
+              <Text style={[styles.genreText, styles.padR18]}>
                 {item.category.replace(/_/g, ' ')}
               </Text>
 
               <View
-                style={{
-                  position: 'absolute',
-                  borderRadius: 10,
-                  right: 0,
-                  width: 20,
-                  height: 20,
-                  backgroundColor: item.status === 'open' ? 'green' : 'red',
-                }}>
-                <Text style={{height: 20}}></Text>
+                style={[
+                  styles.category,
+                  {backgroundColor: item.status === 'open' ? 'green' : 'red'},
+                ]}>
+                <Text style={styles.h20}></Text>
               </View>
             </View>
           </SharedElement>
@@ -110,11 +94,8 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
           </SharedElement>
 
           <SharedElement id={`item.${item.key}.meta`}>
-            <View style={{alignItems: 'center', width: 200}}>
-              <Text
-                style={{fontSize: 14}}
-                numberOfLines={1}
-                ellipsizeMode="tail">
+            <View style={styles.meta}>
+              <Text style={styles.ft14} numberOfLines={1} ellipsizeMode="tail">
                 {item.title.toUpperCase()}
               </Text>
               <Text style={styles.genreText}>
@@ -134,9 +115,36 @@ const AssetCards = ({navigation, item, investments, index, scrollX}) => {
   );
 };
 
-export default AssetCards;
+export default React.memo(AssetCards);
 
 const styles = StyleSheet.create({
+  ft14: {fontSize: 14},
+  meta: {alignItems: 'center', width: 200},
+  h20: {height: 20},
+  category: {
+    position: 'absolute',
+    borderRadius: 10,
+    right: 0,
+    width: 20,
+    height: 20,
+  },
+  itemData: {
+    marginHorizontal: SPACING,
+    padding: SPACING * 2,
+    alignItems: 'center',
+    borderRadius: 34,
+  },
+  padR18: {
+    paddingRight: 18,
+  },
+  itemBackdrop: {
+    backgroundColor: 'white',
+    borderRadius: 34,
+    borderBottomWidth: Platform.OS === 'ios' ? 5 : 0,
+  },
+  itemWidth: {
+    width: ITEM_SIZE,
+  },
   loadingContainer: {
     flex: 1,
     alignItems: 'center',
@@ -183,5 +191,6 @@ const styles = StyleSheet.create({
   genreText: {
     fontSize: 12,
     opacity: 0.4,
+    
   },
 });

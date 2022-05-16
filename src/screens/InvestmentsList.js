@@ -16,7 +16,7 @@ import {
 import {getInvestments} from '../config/data/timeless';
 
 
-import {width} from '../config/theme';
+import {width, IMAGES} from '../config/theme';
 import AssetCards from '../components/AssetCards';
 import Backdrop from '../components/Backdrop';
 
@@ -41,7 +41,6 @@ export default function InvestmentsList({navigation,item}) {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      //console.log('sdsdsd')
       const investments = await getInvestments();
       setInvestments(investments.slice(0, 12));
     };
@@ -57,9 +56,8 @@ export default function InvestmentsList({navigation,item}) {
 
   return (
     <View style={styles.container}>
-      
-
       <Backdrop investments={investments} scrollX={backdropAnimated} />
+
       <StatusBar hidden />
       <Animated.FlatList
         showsHorizontalScrollIndicator={false}
@@ -72,7 +70,6 @@ export default function InvestmentsList({navigation,item}) {
         contentContainerStyle={{
           alignItems: 'center',
           paddingHorizontal: EMPTY_ITEM_SIZE,
-          
         }}
         snapToInterval={ITEM_SIZE}
         snapToAlignment="start"
@@ -98,12 +95,9 @@ export default function InvestmentsList({navigation,item}) {
           );
         }}
       />
-      <View style={{position: 'absolute', bottom: 50, alignSelf: 'center'}}>
+      <View style={styles.filter}>
         <TouchableOpacity>
-          <Image
-            source={require('./../assets/filter.png')}
-            style={{width: 40, height: 40, tintColor: 'white'}}
-          />
+          <Image source={IMAGES.filterImage} style={styles.filterImage} />
         </TouchableOpacity>
       </View>
     </View>
@@ -119,6 +113,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#3d66b1',
+  },
+  filter: {
+    position: 'absolute',
+    bottom: 50,
+    alignSelf: 'center',
+  },
+  filterImage: {
+    width: 40, height: 40, tintColor: 'white'
   },
   paragraph: {
     margin: 24,

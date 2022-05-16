@@ -1,5 +1,4 @@
 import * as React from 'react';
-//import {AntDesign} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/core';
 import {View} from 'react-native-animatable';
 import {fonts} from '../config/theme';

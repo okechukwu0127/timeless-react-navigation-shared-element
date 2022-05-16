@@ -11,3 +11,10 @@ export const foodConfig = {
     orange: '#FB9B06',
   },
 };
+
+export const IMAGES = {
+  filterImage: require('./../assets/filter.png'),
+  backImage: require('./../assets/back.png'),
+  bell: require('./../assets/bell.png'),
+  bellActive: require('./../assets/bell_active.png'),
+};

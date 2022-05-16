@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 import LinearGradient from 'react-native-linear-gradient';
+import BackDropItem from '../components/BackDropItem';
 
 export const SPACING = 10;
 export const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
@@ -24,12 +25,7 @@ import {width, height} from '../config/theme';
 
 const Backdrop = React.memo(({investments, scrollX}) => {
   return (
-    <View
-      style={{
-        height: BACKDROP_HEIGHT,
-        width,
-        position: 'absolute',
-      }}>
+    <View style={styles.container}>
       <StatusBar hidden />
 
       <FlatList
@@ -41,47 +37,30 @@ const Backdrop = React.memo(({investments, scrollX}) => {
           width: width,
           height: BACKDROP_HEIGHT,
         }}
-        renderItem={({item, index}) => {
-          if (!item.dropImage) {
-            return null;
-          }
-          const translateX = scrollX.interpolate({
-            inputRange: [(index - 1) * ITEM_SIZE, index * ITEM_SIZE],
-            outputRange: [0, width],
-            extrapolate: 'clamp',
-          });
-          return (
-            <Animated.View
-              removeClippedSubviews={Platform.OS === 'ios'}
-              style={{
-                position: 'absolute',
-                width: translateX,
-                height,
-                overflow: 'hidden',
-              }}>
-              <Image
-                source={{uri: item.dropImage}}
-                style={{
-                  width,
-                  height: BACKDROP_HEIGHT,
-                  position: 'absolute',
-                }}
-              />
-            </Animated.View>
-          );
-        }}
+        renderItem={({item, index}) => (
+          <BackDropItem item={item} index={index} scrollX={scrollX} />
+        )}
       />
       <LinearGradient
         colors={['rgba(0, 0, 0, 0)', '#3d66b1']}
-        style={{
-          height: BACKDROP_HEIGHT,
-          width,
-          position: 'absolute',
-          bottom: 0,
-        }}
+        style={styles.LinearGd}
       />
     </View>
   );
 });
 
 export default Backdrop;
+
+const styles = StyleSheet.create({
+  container: {
+    height: BACKDROP_HEIGHT,
+    width,
+    position: 'absolute',
+  },
+  LinearGd: {
+    height: BACKDROP_HEIGHT,
+    width,
+    position: 'absolute',
+    bottom: 0,
+  },
+});
