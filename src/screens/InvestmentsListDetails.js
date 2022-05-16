@@ -222,12 +222,13 @@ const InvestmentsListDetails = ({navigation, route}) => {
       <Animatable.View
         useNativeDriver
         animation={fadeInBottom}
-        delay={DURATION + 300 + (20 + 1) * 150}
+        delay={DURATION + 300 + (2 + 1) * 150}
         style={styles.getStarted}>
-        <TouchableOpacity>
-          <Text style={styles.getStartedText}>GET STARTED NOW</Text>
-        </TouchableOpacity>
+         <TouchableOpacity >
+        <Text style={styles.getStartedText}>GET STARTED NOW</Text>
+      </TouchableOpacity>
       </Animatable.View>
+     
     </SafeAreaView>
   );
 };
