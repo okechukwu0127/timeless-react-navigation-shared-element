@@ -219,11 +219,15 @@ const InvestmentsListDetails = ({navigation, route}) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.getStarted}>
-        <Text style={styles.getStartedText}>
-          GET STARTED NOW
-        </Text>
-      </View>
+      <Animatable.View
+        useNativeDriver
+        animation={fadeInBottom}
+        delay={DURATION + 300 + (1 + 1) * 150}
+        style={styles.getStarted}>
+        <TouchableOpacity>
+          <Text style={styles.getStartedText}>GET STARTED NOW</Text>
+        </TouchableOpacity>
+      </Animatable.View>
     </SafeAreaView>
   );
 };
