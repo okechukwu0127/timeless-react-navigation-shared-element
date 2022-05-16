@@ -20,8 +20,22 @@ const styles = StyleSheet.create({
     height: 20,
   },
   price: {
-    fontSize:16
+    fontSize: 16,
   },
+  getStarted: {
+    padding: 15,
+    width: '60%',
+    alignSelf: 'center',
+    opacity: 0.9,
+    backgroundColor: '#3d66b1',
+    marginHorizontal: 20,
+    borderRadius: 10,
+    position: 'absolute',
+    flex: 1,
+    bottom: 30,
+    justifyContent: 'center',
+  },
+  getStartedText: {alignSelf: 'center', color: 'white', fontWeight: '600'},
 
   topContainer: {
     position: 'absolute',
@@ -37,7 +51,7 @@ const styles = StyleSheet.create({
     color: 'grey',
     fontSize: 18,
     marginBottom: SPACING,
-    marginTop: SPACING-30,
+    marginTop: SPACING - 30,
   },
   inActiveTab: {color: '#3d66b1', fontWeight: '300'},
   inactivTab: {color: 'grey', fontSize: 12},

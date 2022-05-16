@@ -64,7 +64,6 @@ const InvestmentsListDetails = ({navigation, route}) => {
     }
   }, []);
 
-
   return (
     <SafeAreaView style={styles.flex1}>
       <StatusBar hidden />
@@ -220,22 +219,8 @@ const InvestmentsListDetails = ({navigation, route}) => {
         </TouchableOpacity>
       </View>
 
-      <View
-        style={{
-          padding: 15,
-          width: '60%',
-          alignSelf: 'center',
-
-          opacity: 0.9,
-          backgroundColor: '#3d66b1',
-          marginHorizontal: 20,
-          borderRadius: 10,
-          position: 'absolute',
-          flex: 1,
-          bottom: 30,
-          justifyContent: 'center',
-        }}>
-        <Text style={{alignSelf: 'center', color: 'white', fontWeight: '600'}}>
+      <View style={styles.getStarted}>
+        <Text style={styles.getStartedText}>
           GET STARTED NOW
         </Text>
       </View>
