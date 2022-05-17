@@ -19,7 +19,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from '../screens/styles/InvestmentsListDetailStyles';
 import {height, width, fonts, IMAGES} from '../config/theme';
 import * as Animatable from 'react-native-animatable';
-import {getAssetGallery} from '../config/data/timeless';
+import {getAssetGallery, getAssetDetails} from '../config/data/timeless';
 import TopImages from '../components/topImages';
 import GalleryData from '../components/GalleryData';
 const BACKDROP_HEIGHT = height * 0.75;
@@ -43,6 +43,8 @@ const fadeInBottom = {
 
 const InvestmentsListDetails = ({navigation, route}) => {
   const [cast, setCast] = React.useState(null);
+  const [moreDetail, setMoreDetail] = React.useState(null);
+
   const [active, setActive] = React.useState(false);
 
   const [content, setContent] = React.useState('');
@@ -59,10 +61,22 @@ const InvestmentsListDetails = ({navigation, route}) => {
       setCast(cast);
     };
 
+    const fetchsetMoreDetailData = async () => {
+      const moreDetail = await getAssetDetails(item.id);
+
+      setMoreDetail(moreDetail);
+    };
+
+    if (!moreDetail) {
+      fetchsetMoreDetailData(item.id);
+    }
+
     if (!cast) {
       fetchData(item.id);
     }
   }, []);
+
+
 
   return (
     <SafeAreaView style={styles.flex1}>
