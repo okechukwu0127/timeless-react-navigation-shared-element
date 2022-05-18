@@ -62,7 +62,7 @@ export const getAssetGallery = async assetId => {
 export const getAssetDetails = async assetId => {
   const data = await fetch(creditsAssetURL(assetId)).then(x => x.json());
   const { details } = data?.data;
-  console.log(details);
+  //console.log(details);
 
   return details;
 };

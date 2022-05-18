@@ -14,12 +14,14 @@ import {
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 
+
 export const SPACING = 10;
-export const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
+ const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
 const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const BACKDROP_HEIGHT = height * 0.65;
-
 import {width, height} from '../config/theme';
+
+
 
 const AssetCards = ({
   navigation,
@@ -174,7 +176,7 @@ const styles = StyleSheet.create({
   },
   posterImage: {
     width: '100%',
-    height: ITEM_SIZE * 1.2,
+    height: Platform.OS === 'ios' ? ITEM_SIZE * 1.2 : ITEM_SIZE * 0.8, //ITEM_SIZE * 1.2,
     resizeMode: 'cover',
     borderRadius: 24,
     margin: 0,
@@ -199,6 +201,5 @@ const styles = StyleSheet.create({
   genreText: {
     fontSize: 12,
     opacity: 0.4,
-    
   },
 });

@@ -17,8 +17,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import BackDropItem from '../components/BackDropItem';
 
 export const SPACING = 10;
-export const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
-const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
+//export const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
+//const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const BACKDROP_HEIGHT = height * 0.75;
 
 import {width, height} from '../config/theme';

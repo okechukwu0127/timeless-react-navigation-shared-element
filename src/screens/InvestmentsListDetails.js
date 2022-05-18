@@ -83,10 +83,17 @@ const InvestmentsListDetails = ({navigation, route}) => {
       <StatusBar hidden />
 
       <View style={styles.topContainer}>
-        <LinearGradient
+        {/* <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+          <SharedElement
+            id={`item.${item.key}.image`}
+            style={styles.posterImage}>
+            <Image source={{uri: item.dropImage}} style={styles.posterImage} />
+          </SharedElement>
+        </View> */}
+         <LinearGradient
           colors={['#3d66b1', '#d1e8ff', 'white']}
           style={styles.LinearG}
-        />
+        /> 
 
         <TopImages
           BACKDROP_HEIGHT={BACKDROP_HEIGHT}
@@ -102,11 +109,6 @@ const InvestmentsListDetails = ({navigation, route}) => {
         />
       </View>
 
-      <View style={[StyleSheet.absoluteFillObject, styles.container]}>
-        <SharedElement id={`item.${item.key}.image`} style={styles.posterImage}>
-          <Image source={{uri: item.thumbnail}} style={styles.posterImage} />
-        </SharedElement>
-      </View>
       <View style={[StyleSheet.absoluteFillObject, styles.containerTwo]}>
         <SharedElement
           id={`item.${item.key}.backdrop`}
@@ -144,6 +146,8 @@ const InvestmentsListDetails = ({navigation, route}) => {
               </Text>
             </View>
           </View>
+          {/* {console.log(item)}
+          <Image source={{uri: item.thumbnail}} style={styles.posterImage} /> */}
         </SharedElement>
         <AnimatableScrollView
           ref={scrollViewRef}
@@ -236,13 +240,12 @@ const InvestmentsListDetails = ({navigation, route}) => {
       <Animatable.View
         useNativeDriver
         animation={fadeInBottom}
-        delay={DURATION + 300 + (2 + 1) * 150}
+        delay={DURATION + 300 + (3 * 150)}
         style={styles.getStarted}>
-         <TouchableOpacity >
-        <Text style={styles.getStartedText}>GET STARTED NOW</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.getStartedText}>GET STARTED NOW</Text>
+        </TouchableOpacity>
       </Animatable.View>
-     
     </SafeAreaView>
   );
 };
